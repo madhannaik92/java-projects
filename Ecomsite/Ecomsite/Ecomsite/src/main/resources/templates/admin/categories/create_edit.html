@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${category.id == null ? 'Create New Category' : 'Edit Category'}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4" th:text="${category.id == null ? 'Create New Category' : 'Edit Category'}"></h1>
+
+        <form th:action="@{/admin/categories/save}" th:object="${category}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="name">Category Name:</label>
+                <input type="text" id="name" th:field="*{name}" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" th:field="*{description}" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Save Category</button>
+            <a href="/admin/categories" class="btn btn-secondary">Cancel</a>
+        </form>
+
+        <p class="mt-4"><a href="/admin/categories">Back to Categories List</a></p>
+    </div>
+</body>
+</html>
